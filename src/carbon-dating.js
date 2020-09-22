@@ -5,13 +5,14 @@ const HALF_LIFE_PERIOD= 5730;
 
 module.exports = function dateSample(sampleActivity) {
   
-// let k =0.693/HALF_LIFE_PERIOD;
 let age=0;
 
-if ( typeof sampleActivity === 'undefined' || typeof(sampleActivity) == "string" || isNaN(sampleActivity) || (sampleActivity)=="" ){
+if (  sampleActivity === undefined || typeof(sampleActivity) != "string" || isNaN(parseFloat(sampleActivity)) || (sampleActivity)=="" || parseFloat(sampleActivity)>0 || isFinite(parseFloat(sampleActivity) ))
+{
   return false;
 }
   else {
-     age =Math.ceil(Math.log(MODERN_ACTIVITY/parseFloat(sampleActivity))*HALF_LIFE_PERIOD/0.693)
+     age =Math.ceil(Math.log(MODERN_ACTIVITY/parseFloat(sampleActivity)*HALF_LIFE_PERIOD)/0.693);
+     return age;
   }
 };
